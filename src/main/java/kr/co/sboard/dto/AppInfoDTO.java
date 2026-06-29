@@ -2,13 +2,10 @@ package kr.co.sboard.dto;
 
 import lombok.*;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
-@Getter
-@Setter
-@ToString
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
+@Data
+@Component
 public class AppInfoDTO {
 
     @Value("${spring.application.name}")
