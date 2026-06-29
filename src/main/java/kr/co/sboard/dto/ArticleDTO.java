@@ -23,6 +23,9 @@ public class ArticleDTO {
     private String wdate;
 
 
+
+
+
     public Article toEntity() {
         return Article.builder()
                 .ano(ano)
