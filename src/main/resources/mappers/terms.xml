@@ -5,6 +5,7 @@
 <mapper namespace="kr.co.sboard.dao.TermsDAO">
 
     <select id="select">
+        SELECT * FROM terms WHERE no=#{no};
     </select>
 
     <select id="selectAll">
