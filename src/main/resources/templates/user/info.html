@@ -7,11 +7,7 @@
 </head>
 <body>
     <div id="wrapper">
-        <header>
-            <h3>
-                <a href="/index.html" class="title">Board Project</a>
-            </h3>
-        </header>
+        <th:block th:include="~{/user/_head.html}"/>
         <main id="user">
             <section class="info">
                 <form action="#" method="post">
@@ -102,9 +98,7 @@
                 </form>
             </section>
         </main>
-        <footer>
-            <p>ⓒCopyright chhak.or.kr</p>
-        </footer>
+        <th:block th:include="~{/user/_tail.html}"/>
     </div>    
 </body>
 </html>

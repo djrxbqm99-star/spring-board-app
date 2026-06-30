@@ -17,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Map;
@@ -79,7 +80,19 @@ public class UserController {
         log.info(dto);
 
         // 서비스 호출
-        int count = userService.getCount(dto.getValue());
+        int count = userService.getCount(dto);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(Map.of("count", count));
+    }
+
+    @ResponseBody
+    @PostMapping("/user/check")
+    public ResponseEntity<Map<String, Integer>> check(@RequestBody Map<String, String> jsonData){
+        log.info(jsonData);
+
+        int count = 1;
 
         return ResponseEntity
                 .status(HttpStatus.OK)

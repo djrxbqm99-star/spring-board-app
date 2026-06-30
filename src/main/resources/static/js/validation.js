@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', function(){
         }
 
         // 별명 중복 여부 요청하기
-        const response = await fetch('/jboard/user/check.do?type=nick&value=' + value);
+        const response = await fetch('/user/check?type=nick&value=' + value);
         const data = await response.json();
         console.log(data);
 
@@ -208,7 +208,6 @@ document.addEventListener('DOMContentLoaded', function(){
             return;
         }
 
-        preventDblClick = true;
         console.log('이중 클릭 방지!!!');
 
         const value = form.email.value;
@@ -220,8 +219,10 @@ document.addEventListener('DOMContentLoaded', function(){
             return;
         }
 
+        preventDblClick = true;
+
         // 이메일 인증코드 요청하기(중복여부 검사 포함)
-        const response = await fetch('/jboard/user/check.do?type=email&value='+value);
+        const response = await fetch('/user/check?type=email&value='+value);
         const data = await response.json();
         console.log(data);
 
@@ -244,15 +245,18 @@ document.addEventListener('DOMContentLoaded', function(){
 
         const value = form.code.value;
 
-        // formData 생성
-        const formData = new FormData();
-        formData.append('code', value);
-
+        // JSON 생성
+        const jsonData = {
+            "code": value
+        };
 
         // 이메일 인증코드 전송하기(인증코드 검증)
-        const response = await fetch('/jboard/user/check.do', {
+        const response = await fetch('/user/check', {
             method: 'POST',
-            body: formData,
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(jsonData),
         });
         const data = await response.json();
         console.log(data);
@@ -288,7 +292,7 @@ document.addEventListener('DOMContentLoaded', function(){
         }
 
         // 휴대폰 중복 여부 요청하기
-        const response = await fetch('/jboard/user/check.do?type=hp&value='+value);
+        const response = await fetch('/user/check?type=hp&value='+value);
         const data = await response.json();
         console.log(data);
 
