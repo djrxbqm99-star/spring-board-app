@@ -5,15 +5,21 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import kr.co.sboard.dto.AppInfoDTO;
 import kr.co.sboard.dto.TermsDTO;
+import kr.co.sboard.dto.UserCheckDTO;
 import kr.co.sboard.dto.UserDTO;
 import kr.co.sboard.service.TermsService;
 import kr.co.sboard.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.Map;
 
 @Log4j2
 @RequiredArgsConstructor
@@ -66,4 +72,20 @@ public class UserController {
         
         return "/user/terms";
     }
+
+    @ResponseBody
+    @GetMapping("/user/check")
+    public ResponseEntity<Map<String, Integer>> check(UserCheckDTO dto){
+        log.info(dto);
+
+        // 서비스 호출
+        int count = userService.getCount(dto.getValue());
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(Map.of("count", count));
+    }
+
+
+
 }

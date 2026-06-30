@@ -30,13 +30,25 @@ public class UserService {
         return null;
     }
 
+    public int getCount(String value){
+
+        // JPA
+        int count = repository.countByUserid(value);
+
+
+        return count;
+    }
+
     public void register(UserDTO dto){
         // 비밀번호 암호화
         String encoded = passwordEncoder.encode(dto.getPass());
         dto.setPass(encoded);
 
         // Mybatis
-        dao.insert(dto);
+        //dao.insert(dto);
+
+        // JPA
+        repository.save(dto.toEntity());
     }
 
     public void modify(UserDTO dto){
@@ -45,4 +57,7 @@ public class UserService {
     public void remove(String userid){
 
     }
+
+
+
 }
