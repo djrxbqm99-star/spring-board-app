@@ -3,6 +3,7 @@ package kr.co.sboard.service;
 import kr.co.sboard.dao.ArticleDAO;
 import kr.co.sboard.dao.UserDAO;
 import kr.co.sboard.dto.ArticleDTO;
+import kr.co.sboard.dto.UserCheckDTO;
 import kr.co.sboard.dto.UserDTO;
 import kr.co.sboard.repository.ArticleRepository;
 import kr.co.sboard.repository.UserRepository;
@@ -30,10 +31,29 @@ public class UserService {
         return null;
     }
 
-    public int getCount(String value){
+    public int getCount(UserCheckDTO dto){
+
+        int count = 0;
 
         // JPA
-        int count = repository.countByUserid(value);
+        if(dto.getType().equals("userid")){
+            count = repository.countByUserid(dto.getValue());
+        }else if(dto.getType().equals("nick")){
+            count = repository.countByNick(dto.getValue());
+        }else if(dto.getType().equals("email")){
+            count = repository.countByEmail(dto.getValue());
+        }
+
+        if(count == 0){
+            // 인증코드 이메일 전송
+        }
+
+
+        else if(dto.getType().equals("hp")){
+            count = repository.countByHp(dto.getValue());
+        }
+
+
 
 
         return count;
