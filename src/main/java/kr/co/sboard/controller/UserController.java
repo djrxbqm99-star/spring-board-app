@@ -1,6 +1,5 @@
 package kr.co.sboard.controller;
 
-
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import kr.co.sboard.dto.AppInfoDTO;
@@ -30,11 +29,11 @@ public class UserController {
     private final UserService userService;
     private final TermsService termsService;
 
-
     @GetMapping("/user/info")
     public String info(){
         return "/user/info";
     }
+
     @GetMapping("/user/login")
     public String login(){
         return "/user/login";
@@ -59,18 +58,17 @@ public class UserController {
         // 로그인 이동
         return "redirect:/user/login?register=success";
     }
-    
-    
+
     @GetMapping("/user/terms")
     public String terms(Model model){
-        
+
         // 약관 조회 서비스 호출
         TermsDTO termsDTO = termsService.get(1);
         log.info(termsDTO);
 
         // 모델 참조
         model.addAttribute(termsDTO);
-        
+
         return "/user/terms";
     }
 
@@ -81,8 +79,6 @@ public class UserController {
 
         // 서비스 호출
         int count = userService.getCount(dto);
-<<<<<<< HEAD
-=======
 
         return ResponseEntity
                 .status(HttpStatus.OK)
@@ -95,29 +91,10 @@ public class UserController {
         log.info(jsonData);
 
         int count = 1;
->>>>>>> 9f0fe0f6c8c54e72ec71820863c85f44633c6899
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(Map.of("count", count));
     }
-
-    @ResponseBody
-    @PostMapping("/user/check")
-    public ResponseEntity<Map<String, Integer>> check(@RequestBody Map<String, String> jsonData){
-
-        log.info(jsonData);
-
-
-        int count = 1;
-
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(Map.of("count", count));
-
-    }
-
-
-
 
 }
