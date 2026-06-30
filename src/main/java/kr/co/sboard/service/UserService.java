@@ -42,6 +42,7 @@ public class UserService {
             count = repository.countByNick(dto.getValue());
         }else if(dto.getType().equals("email")){
             count = repository.countByEmail(dto.getValue());
+<<<<<<< HEAD
         }
 
         if(count == 0){
@@ -55,7 +56,15 @@ public class UserService {
 
 
 
+=======
+>>>>>>> 9f0fe0f6c8c54e72ec71820863c85f44633c6899
 
+            if(count == 0){
+                // 인증코드 이메일 전송
+            }
+        }else if(dto.getType().equals("hp")){
+            count = repository.countByHp(dto.getValue());
+        }
         return count;
     }
 

@@ -81,6 +81,21 @@ public class UserController {
 
         // 서비스 호출
         int count = userService.getCount(dto);
+<<<<<<< HEAD
+=======
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(Map.of("count", count));
+    }
+
+    @ResponseBody
+    @PostMapping("/user/check")
+    public ResponseEntity<Map<String, Integer>> check(@RequestBody Map<String, String> jsonData){
+        log.info(jsonData);
+
+        int count = 1;
+>>>>>>> 9f0fe0f6c8c54e72ec71820863c85f44633c6899
 
         return ResponseEntity
                 .status(HttpStatus.OK)

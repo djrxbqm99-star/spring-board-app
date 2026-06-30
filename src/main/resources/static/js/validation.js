@@ -208,7 +208,10 @@ document.addEventListener('DOMContentLoaded', function(){
             return;
         }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9f0fe0f6c8c54e72ec71820863c85f44633c6899
         console.log('이중 클릭 방지!!!');
 
         const value = form.email.value;
@@ -248,15 +251,25 @@ document.addEventListener('DOMContentLoaded', function(){
 
         // JSON 생성
         const jsonData = {
+<<<<<<< HEAD
             "code" : value
         };
 
+=======
+            "code": value
+        };
+>>>>>>> 9f0fe0f6c8c54e72ec71820863c85f44633c6899
 
         // 이메일 인증코드 전송하기(인증코드 검증)
         const response = await fetch('/user/check', {
             method: 'POST',
+<<<<<<< HEAD
             headers : {
                 "Content-Type" : "application/json"
+=======
+            headers: {
+                "Content-Type": "application/json"
+>>>>>>> 9f0fe0f6c8c54e72ec71820863c85f44633c6899
             },
             body: JSON.stringify(jsonData),
         });
